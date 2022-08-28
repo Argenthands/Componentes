@@ -8,14 +8,106 @@
     --main-background: #edf1f2;
     --blue-display: #5166d6;
 }
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--main-background);
+[data-theme="light"]{
+    --primary: #2a83d6;
+    --secondary: #4c99d9;
+    --brightness: #7f99d9;
+    --shadow: #1962b3;
+    --background: #fafafa;
+    --text: #333;
+    --title: #1a2b3c;
 }
+[data-theme="dark"]{
+    --primary: #e9833e;
+    --secondary: #f9a852;
+    --brightness: #ffb979;
+    --shadow: #c7622b;
+    --background: #333;
+    --text: #fafafa;
+    --title: #a1b2c3;
+}
+body{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 1fr 3fr 1fr;
+    min-height: 100vh;
+    width: 100vw;
+    color: var(--text);
+    background: var(--background);
+    font-family: var(--main-font);
+}
+
+h1{
+    color: var(--title);
+}
+header{
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20 10px;
+    background: var(--primary);
+    border-radius: 20px 20px 30px 30px;
+    max-width: 45%;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* Estilos del switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--primary);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .slider {
+    background-color: var(--background);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
 .calculator{
+    grid-column: 2;
+    grid-row: 2;
     position: relative;
     width: 340px;
     padding: 20px;
@@ -42,7 +134,7 @@ body{
     border-radius: 10px;
     margin-bottom: 12px;
     padding: 0 20px;
-    font-size: 10em;
+    font-size: 2.5em;
     font-weight: 500;
 }
 .calculator .buttons span{
